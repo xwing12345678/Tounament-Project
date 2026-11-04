@@ -1,6 +1,8 @@
 from Validation import validate_menu_selection
-from logging import* # type: ignore
-valid_choices:list[str] = [str(number)for number in range(0,11)]
+import logging
+from program_data import teams,matches
+placeholder = "Not implemented yet"
+valid_choices:list[str] = [str(number)for number in range(1,12)]
 valid_choice:bool = False
 menu_message:str = """
                         ========== TOURNAMENT MANAGER ==========
@@ -14,32 +16,51 @@ menu_message:str = """
                         8. Show teams without wins
                         9. Show tournament summary
                         10. Check championship potential
-                        0. Exit
+                        11. Exit
                         Choose an option: 
                         """
 
 def main():
-    running:bool = True    
+    running:bool = True
+    choice:str = ""   
     while running == True:
-        choice:str = ""
-        while main:
-            choice = validate_menu_selection(valid_choices,menu_message)
-        if choice == '0':
-            pass
-        elif choice == '1':
-            pass
-        elif choice == '1':
-                    pass 
-        elif choice == '1':
-                    pass
-        elif choice == '1':
-                    pass
-        elif choice == '1':
-                    pass
+        choice = validate_menu_selection(valid_choices,menu_message)
+        if choice == '1':
+                print(placeholder)
+            
+        elif choice == '2':
+                print(placeholder)
+
+        elif choice == '3':
+                print(placeholder)
+
+        elif choice == '4':
+                print(placeholder)
+
+        elif choice == '5':
+                print(placeholder)
+
+        elif choice == '6':
+                print(placeholder)
+
+        elif choice == '7':
+                print(placeholder)
+
+        elif choice == '8':
+                print(placeholder)
+
+        elif choice == '9':
+                print(placeholder)
+
         elif choice == '10':
-                    pass
+                print(placeholder)
+                                                                                    
         else:
-            print("Sorry I ran out of time")
+            print("Thank you for using the Tournament manager!")
+            print("Hope to see you again soon!")
+            running = False
+            break
+        
                 
 
 

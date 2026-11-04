@@ -1,6 +1,6 @@
 #from typing import 
-from logging_config import*
-
+import logging
+from logging_functs_and_config import log_input_rejection
 def is_int(choice:str)->bool:
     result = False
     if not choice.strip().isdigit():
@@ -48,8 +48,7 @@ def validate_menu_selection(menu_choices:list[str],message:str)->str:
             continue
         if selection not in menu_choices:
             log_input_rejection(invalid_selection_log,invalid_selection_message,selection)
-            continue
-        
+            continue        
         return selection
 
 
