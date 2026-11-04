@@ -1,7 +1,8 @@
 #from typing import 
 import logging
-from logging_functs_and_config import log_input_rejection
-def is_int(choice:str)->bool:
+from logging_functs_and_config import log_input_rejection,empty_selection_log,empty_selection_user_message,invalid_selection_log,invalid_selection_message
+
+def is_non_negative_int(choice:str)->bool:
     result = False
     if not choice.strip().isdigit():
         return result
@@ -15,42 +16,39 @@ def is_positive(integer:int)->bool:
         result = True
         return result
 
-def is_not_negative(integer:int)->bool:
-    result = False
-    if not integer >= 0:
-            return result
-    result = True
-    return result
 
-'''
+ 
 
-def is_in_range(integer:int,start:int, finish:int )->bool:
-    result = False
-    valid_choices:list[int] = [choice for choice in range(start,finish)]
-    if integer in valid_choices:
+def is_team_equal(team_dict1:dict[str,str|int],team_dict2:dict[str,str|int])->bool:
+     result:bool = False
+     if team_dict1["id"] == team_dict2["id"] or team_dict1["name"] == team_dict2["name"]:
         result = True
-    return result
-    '''
+     return result
 
+def list_has_duplicate_team(new_team:dict[str,str|int],team_list:list[dict[str,str|int]])->bool:
+        result:bool = False
+        for team in team_list:
+            if is_team_equal(new_team,team):
+                result = True
+                return result
+        return result
 
-empty_selection_user_message:str = "You didn't select anything. Please enter a valid selection from the menu."
-empty_selection_log:str = "Empty menu selection%s"
-
-invalid_selection_message:str = "Your selection is not in the menu, please select a valid option from the displayed menu."
-invalid_selection_log:str = "Invalid option selected: %r"
-
-def validate_menu_selection(menu_choices:list[str],message:str)->str:
+def validate_empty_string_selection(message:str ="Enter a non empty string")->str:
     selection = ""
     while True:
-        selection = input(message).lower().strip()
+        selection = input(message).strip()
         if not selection:
             log_input_rejection(log_message=empty_selection_log,user_warning_message=empty_selection_user_message,value=selection)
             continue
-        if selection not in menu_choices:
+        return selection
+    
+def validate_menu_selection(menu_choices:list[str],message:str)->str:
+    selection = ""
+    while True:
+        selection = validate_empty_string_selection(message)
+        if selection.lower() not in menu_choices:
             log_input_rejection(invalid_selection_log,invalid_selection_message,selection)
             continue        
         return selection
-
-
 
 

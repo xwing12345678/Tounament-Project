@@ -1,6 +1,7 @@
 from Validation import validate_menu_selection
 import logging
 from program_data import teams,matches
+from CRUD_functs import add_to_teams
 placeholder = "Not implemented yet"
 valid_choices:list[str] = [str(number)for number in range(1,12)]
 valid_choice:bool = False
@@ -26,7 +27,7 @@ def main():
     while running == True:
         choice = validate_menu_selection(valid_choices,menu_message)
         if choice == '1':
-                print(placeholder)
+                add_to_teams()
             
         elif choice == '2':
                 print(placeholder)
